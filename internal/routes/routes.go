@@ -5,13 +5,15 @@ import (
 	"github.com/rafael-andrade-se/navo/api/interfaces/handlers"
 )
 
-func RegisterRoutes(router *gin.Engine, usuarioHandler handlers.UsuarioHandler, authHandler handlers.AuthHandler) {
+func RegisterRoutes(
+	router *gin.Engine,
+	usuarioHandler handlers.UsuarioHandler,
+	authHandler handlers.AuthHandler,
+	veiculoHandler handlers.VeiculoHandler,
+) {
 	api := router.Group("/api/v1")
 
-	// Rota de autenticação (login)
-	api.POST("/login", authHandler.Login)
-
-	// Rotas de usuários
-	usuarios := api.Group("/usuarios")
-	handlers.RegisterUsuarioRoutes(usuarios, usuarioHandler)
+	RegisterAuthRoutes(api, authHandler)
+	RegisterUsuarioRoutes(api.Group("/usuarios"), usuarioHandler)
+	RegisterVeiculoRoutes(api.Group("/veiculos"), veiculoHandler)
 }

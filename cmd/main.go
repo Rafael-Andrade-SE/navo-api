@@ -31,14 +31,20 @@ func main() {
 	usuarioRepo := repository.NovoUsuarioRepositoryPG(db)
 	usuarioService := services.NovoUsuarioService(usuarioRepo)
 
+	veiculoRepo := repository.NovoVeiculoRepositoryPG(db)
+	veiculoService := services.NovoVeiculoService(veiculoRepo)
+
 	// Handlers
 	usuarioHandler := handlers.NewUsuarioHandler(usuarioService)
-	authHandler := handlers.NewAuthHandler(usuarioService) // ← aqui
+	authHandler := handlers.NewAuthHandler(usuarioService)
+	veiculoHandler := handlers.NewVeiculoHandler(veiculoService)
 
 	// Criar servidor
 	router := gin.Default()
 	server.SetupMiddleware(router)
-	routes.RegisterRoutes(router, usuarioHandler, authHandler) // ← corrigido
+
+	// Registrar rotas com injeção de handlers
+	routes.RegisterRoutes(router, usuarioHandler, authHandler, veiculoHandler)
 
 	// Rodar servidor
 	logger.Log.Info("Servidor rodando na porta 3000 🚀")

@@ -15,14 +15,6 @@ type UsuarioHandler struct {
 	Service services.UsuarioService
 }
 
-func RegisterUsuarioRoutes(rg *gin.RouterGroup, handler UsuarioHandler) {
-	rg.GET("/", handler.ListarUsuarios)
-	rg.POST("/", handler.CriarUsuario)
-	rg.GET("/:id", handler.ObterUsuarioPorID)
-	rg.PUT("/:id", handler.AtualizarUsuario)
-	rg.DELETE("/:id", handler.RemoverUsuario)
-}
-
 func NewUsuarioHandler(service services.UsuarioService) UsuarioHandler {
 	return UsuarioHandler{Service: service}
 }

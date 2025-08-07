@@ -18,14 +18,6 @@ func NewVeiculoHandler(service services.VeiculoService) VeiculoHandler {
 	return VeiculoHandler{Service: service}
 }
 
-func RegisterVeiculoRoutes(rg *gin.RouterGroup, handler VeiculoHandler) {
-	rg.POST("/veiculos/usuario/:idUsuario", handler.CriarVeiculo)
-	rg.GET("/veiculos/usuario/:idUsuario", handler.ListarVeiculosPorUsuario)
-	rg.GET("/veiculos/:id", handler.ObterVeiculoPorID)
-	rg.PUT("/veiculos/:id", handler.AtualizarVeiculo)
-	rg.DELETE("/veiculos/:id", handler.RemoverVeiculo)
-}
-
 func (h *VeiculoHandler) CriarVeiculo(c *gin.Context) {
 	var input dto.CriarVeiculoDTO
 	if err := c.ShouldBindJSON(&input); err != nil {

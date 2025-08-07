@@ -1,0 +1,21 @@
+# Go
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# VSCode
+.vscode/
+
+# Logs
+*.log
+
+# Dependências externas
+vendor/
+
+# Arquivos de ambiente
+.env

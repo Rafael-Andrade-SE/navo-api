@@ -11,6 +11,7 @@ func RegisterRoutes(
 	authHandler handlers.AuthHandler,
 	veiculoHandler handlers.VeiculoHandler,
 	plataformaHandler handlers.PlataformaHandler,
+	tipoGastoHandler handlers.TipoGastoHandler,
 ) {
 	api := router.Group("/api/v1")
 
@@ -18,4 +19,5 @@ func RegisterRoutes(
 	RegisterUsuarioRoutes(api.Group("/usuarios"), usuarioHandler)
 	RegisterVeiculoRoutes(api.Group("/veiculos"), veiculoHandler)
 	RegisterPlataformaRoutes(api.Group("/plataformas"), plataformaHandler)
+	RegisterTipoGastoRoutes(api.Group("/tipo-gastos"), tipoGastoHandler)
 }
